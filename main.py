@@ -6,14 +6,14 @@ app = Flask(__name__)
 app.secret_key = "not a secure key"
 
 def login_required(f):
-	@wraps(f)
-	def wrap(*args, **kwargs):
-		if 'logged_in' in session:
-			return f(*args, **kwargs)
-		else:
-			flash('You need to login first!')
-			return refirect(url_for('login'))
-	return wrap
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('You need to login first.')
+            return redirect(url_for('login'))
+    return wrap
 
  
 
