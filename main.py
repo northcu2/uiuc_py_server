@@ -1,9 +1,9 @@
 
 from flask import Flask, render_template, redirect, url_for, request, session, flash
-from functools import wrap
+from functools import wraps
 app = Flask(__name__)
 
-app.secret_key = "not a secure key"
+app.secret_key = 'not a secure key'
 
 def login_required(f):
     @wraps(f)
