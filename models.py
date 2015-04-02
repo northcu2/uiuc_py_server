@@ -1,3 +1,4 @@
+#creates a new table called posts with three fields
 from app import db
 
 class BlogPost(db.Model):

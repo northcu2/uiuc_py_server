@@ -1,3 +1,4 @@
+#No longer needed only kept around if I break somthing
 import sqlite3
 
 with sqlite3.connect("sample.db") as connection:

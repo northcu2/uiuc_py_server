@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 from models import *
 
 
-
+#Requires the user to log in to access the html doc.
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -31,7 +31,7 @@ def login_required(f):
             return redirect(url_for('login'))
     return wrap
 
-
+#renders index.html sets post variable.
 @app.route('/')
 @login_required
 def home():
@@ -39,24 +39,24 @@ def home():
     return render_template('index.html', posts=posts)
 
 
-
+#renders welcome page
 @app.route('/welcome')
 def welcome():
     return render_template('welcome.html')  
 
-
+#renders login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin': #temp hardcoded user credintials.
             error = 'Invalid Credentials. Please try again.'
         else:
             session['logged_in'] = True
             flash('You were logged in.')
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
-
+#logs user out
 @app.route('/logout')
 @login_required
 def logout():

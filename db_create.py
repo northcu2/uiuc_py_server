@@ -1,3 +1,4 @@
+#This file may no longer be needed.
 from app import db
 from models import BlogPost
 
