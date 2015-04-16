@@ -1,0 +1,14 @@
+<html>
+	<head>
+		{% if title %}
+		<title>{{ title }} - UIUC Activity Map</title>
+		{% else %}
+		<title>Welcome to the UIUC Activity Map</title>
+		{% endif %}
+	</head>
+	<body>
+		<div>Activity Map: <a href="/index">Home</a></div>
+		<hr>
+		{% block content %}{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<p>Click <a href="/logout">here</a> to logout.</p>
+	{% for event in events %}
+	<h2>{{ event.eventName }}</h2>
+	<h3>Users give this event {{ event.eventRating }} upvotes!</h3>
+	<p>STARTS AT: {{ event.eventStart }}<br>ENDS AT: {{ event.eventEnd }}<br>LOCATION: {{ event.locationName }}<br>ADDRESS: {{ event.locationAddress }}<br></p>
+	{% endfor %}
+{% endblock %}

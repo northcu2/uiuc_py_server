@@ -1,13 +1,11 @@
-import os
-#default
-class BaseConfig(object):
-	DEBUG = False
-	SECRET_KEY = 'w\xfc\xbf\xcb~s\x1b\xf8\xe42\xb0\xd6\xc1\x19\xa7\xf1\x06t\x83\xc29\xae[~'
+WTF_CSRF_ENABLED = True
+SECRET_KEY = 'you-will-never-guess'
 
-	SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-	
-class DevelopmentConfig(BaseConfig):
-	DEBUG = True
-	
-class ProductionConfig(BaseConfig):
-	DEBUG = False
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+if os.environ.get('DATABASE_URL') is None:
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+else:
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
