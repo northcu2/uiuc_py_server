@@ -6,9 +6,9 @@
 	{% for event in events %}
 	<div class="event">
 	<h2 class="eventName">{{ event.eventName }}</h2>
-	<h3 class="eventRating">This Event Has {{ event.eventRating }} Upvotes!</h3>
-	<div class="locationDetails"><h3>STARTS AT:</h3><p> {{ event.eventStart }}</p><br><h3>ENDS AT:</h3><p> {{ event.eventEnd }}</p><br><h3>LOCATION:</h3><p> {{ event.locationName }}</p><br><h3>ADDRESS:</h3><p> {{ event.locationAddress }}</p><br></div>
+	<h3 class="eventRating">{{ event.eventRating }}</h3>
+	<div class="locationDetails"><h3>STARTS AT:</h3><p class="eventStart"> {{ event.eventStart }}</p><br><h3>ENDS AT:</h3><p class="eventEnd"> {{ event.eventEnd }}</p><br><h3>LOCATION:</h3><p class="locationName"> {{ event.locationName }}</p><br><h3>ADDRESS:</h3><p class="locationAddress"> {{ event.locationAddress }}</p><br><p class="lat">{{ event.eventLat }}</p><p class="long">{{ event.eventLong }}</p></div>
 	</div>
 	{% endfor %}
-	<div class="eventBlock">
+	</div>
 {% endblock %}

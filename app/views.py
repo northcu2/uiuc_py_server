@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, \
-    url_for, request, session, flash
+    url_for, request, session, flash, jsonify
 from app import app, db
 from models import *
 from .forms import LoginForm
@@ -48,3 +48,18 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out.')
     return redirect(url_for('login'))
+
+@app.route("/get_event_info")
+def get_event_json():
+    events = {}
+    for c in session.query(Event).all():
+        events[c.id] = {
+        'Eventname' : c.Eventname,
+        'eventStart': c.eventStart,
+        }
+    return jsonify(events)
+
+@app.route('/results/')
+def results():
+    results = Event.query.all()
+    return jsonify(data=[c.json_dump() for c in results])
