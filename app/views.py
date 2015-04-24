@@ -20,7 +20,7 @@ def login_required(f):
 
 @app.route('/')
 @app.route('/index')
-@login_required
+
 def index():
 	events = db.session.query(Event).all()
 	return render_template('index.html', events=events)
@@ -49,17 +49,3 @@ def logout():
     flash('You were logged out.')
     return redirect(url_for('login'))
 
-@app.route("/get_event_info")
-def get_event_json():
-    events = {}
-    for c in session.query(Event).all():
-        events[c.id] = {
-        'Eventname' : c.Eventname,
-        'eventStart': c.eventStart,
-        }
-    return jsonify(events)
-
-@app.route('/results/')
-def results():
-    results = Event.query.all()
-    return jsonify(data=[c.json_dump() for c in results])
